@@ -1,4 +1,4 @@
-package com.example.quiz;
+package com.example.quiz.hello;
 
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;

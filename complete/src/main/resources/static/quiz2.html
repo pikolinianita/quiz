@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="upload-section">
+    <input type="file" id="imageUpload" accept="image/*">
+    <button id="addImageBtn">Add Image</button>
+</div>
+
+<div class="gallery">
+    <!-- Images will be dynamically added here -->
+</div>
+
+<!-- Modal for displaying larger image -->
+<div id="imageModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+
+    // script.js
+$(document).ready(function() {
+    // Function to add an image to the gallery
+    function addImageToGallery(imageUrl, imageId) {
+        var imageContainer = $('<div>').addClass('image-container').attr('data-id', imageId);
+        var image = $('<img>').attr('src', imageUrl).attr('alt', 'Gallery Image');
+        var removeBtn = $('<span>').addClass('remove-btn').text('X');
+
+        imageContainer.append(image).append(removeBtn);
+        $('.gallery').append(imageContainer);
+    }
+
+    // Handle image upload
+    $('#addImageBtn').on('click', function() {
+        var fileInput = $('#imageUpload')[0];
+        if (fileInput.files.length === 0) {
+            alert('Please select an image to upload.');
+            return;
+        }
+
+        var file = fileInput.files[0];
+        var formData = new FormData();
+        formData.append('image', file);
+
+        // Simulate an AJAX call to upload the image to the server
+        $.ajax({
+            url: '/upload', // Replace with your actual upload endpoint
+            method: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                // Assuming the server responds with the image URL and ID
+                var imageUrl = response.url;
+                var imageId = response.id;
+                addImageToGallery(imageUrl, imageId);
+                alert('Image uploaded successfully!');
+            },
+            error: function() {
+                alert('Error uploading image.');
+            }
+        });
+    });
+
+    // Remove image when X is clicked
+    $(document).on('click', '.remove-btn', function() {
+        var imageContainer = $(this).parent();
+        var imageId = imageContainer.attr('data-id');
+
+        // Simulate an AJAX call to delete the image from the server
+        $.ajax({
+            url: '/delete', // Replace with your actual delete endpoint
+            method: 'POST',
+            data: { id: imageId },
+            success: function(response) {
+                imageContainer.remove();
+                alert('Image deleted successfully!');
+            },
+            error: function() {
+                alert('Error deleting image.');
+            }
+        });
+    });
+
+    // Show larger image in modal when image is clicked
+    $(document).on('click', '.image-container img', function() {
+        var imageUrl = $(this).attr('src');
+
+        // Simulate an AJAX call to get a larger version of the image
+        $.ajax({
+            url: '/get-large-image', // Replace with your actual endpoint
+            method: 'GET',
+            data: { url: imageUrl },
+            success: function(data) {
+                // Assuming the response is the URL of the larger image
+                $('#modalImage').attr('src', data);
+                $('#imageModal').css('display', 'block');
+            },
+            error: function() {
+                alert('Error loading image.');
+            }
+        });
+    });
+
+    // Close the modal when the close button is clicked
+    $('.close').on('click', function() {
+        $('#imageModal').css('display', 'none');
+    });
+
+    // Close the modal when clicking outside of the image
+    $(window).on('click', function(event) {
+        if (event.target.id === 'imageModal') {
+            $('#imageModal').css('display', 'none');
+        }
+    });
+});
+</script>
+</body>
+</html>
