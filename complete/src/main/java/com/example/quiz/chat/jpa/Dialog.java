@@ -55,8 +55,6 @@ public class Dialog {
     }
 
     public Dialog addMessage(MessageEnt messageEnt) {
-        System.out.println("Message: " + messageEnt);
-        System.out.println(this);
         this.messages.add(messageEnt);
         messageEnt.setDialog(this);
         return this;
@@ -65,6 +63,15 @@ public class Dialog {
     public Dialog addPicture(PictureEnt pictureEnt) {
         this.pictures.add(pictureEnt);
         pictureEnt.setDialog(this);
+        return this;
+    }
+
+    public List<PictureEnt> getPictures() {
+        return pictures;
+    }
+
+    public Dialog setPictures(List<PictureEnt> pictures) {
+        this.pictures = pictures;
         return this;
     }
 

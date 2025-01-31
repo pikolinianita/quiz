@@ -1,9 +1,6 @@
 package com.example.quiz.chat.jpa;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
@@ -16,12 +13,15 @@ public class PictureEnt {
 
     String name;
 
-    UUID picture;
+    UUID pictureID;
 
     String author;
 
     @ManyToOne
     Dialog dialog;
+
+    @Lob
+    String pictureData;
 
     public Dialog getDialog() {
         return dialog;
@@ -50,12 +50,12 @@ public class PictureEnt {
         return this;
     }
 
-    public UUID getPicture() {
-        return picture;
+    public UUID getPictureID() {
+        return pictureID;
     }
 
-    public PictureEnt setPicture(UUID picture) {
-        this.picture = picture;
+    public PictureEnt setPictureID(UUID pictureID) {
+        this.pictureID = pictureID;
         return this;
     }
 
@@ -65,6 +65,16 @@ public class PictureEnt {
 
     public PictureEnt setAuthor(String author) {
         this.author = author;
+        return this;
+    }
+
+
+    public String getPictureData() {
+        return pictureData;
+    }
+
+    public PictureEnt setPictureData(String pictureData) {
+        this.pictureData = pictureData;
         return this;
     }
 }

@@ -25,9 +25,9 @@ public class DefaultDialog implements CommandLineRunner {
                     .addMessage(new MessageEnt().setMessage("uno").setAuthor("Andy"))
                     .addMessage(new MessageEnt().setMessage("dos").setAuthor("Handy"))
                     .addMessage(new MessageEnt().setMessage("tres").setAuthor("Andy"))
-                    .addPicture(new PictureEnt().setName("Ein").setAuthor("author").setPicture(UUID.randomUUID()))
-                    .addPicture(new PictureEnt().setName("Zwei").setAuthor("author").setPicture(UUID.randomUUID()))
-                    .addPicture(new PictureEnt().setName("Drei").setAuthor("author").setPicture(UUID.randomUUID()));
+                    .addPicture(new PictureEnt().setName("Ein").setAuthor("The Author").setPictureID(UUID.randomUUID()))
+                    .addPicture(new PictureEnt().setName("Zwei").setAuthor("An Author").setPictureID(UUID.randomUUID()))
+                    .addPicture(new PictureEnt().setName("Drei").setAuthor("Der Author").setPictureID(UUID.randomUUID()));
             dialogRepo.save(dialog);
 
     }

@@ -2,6 +2,7 @@ package com.example.quiz.chat;
 
 import com.example.quiz.chat.jpa.DialogRepo;
 import com.example.quiz.chat.jpa.MessageEnt;
+import com.example.quiz.chat.jpa.PictureEnt;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -24,14 +25,27 @@ public class ChatService {
             dialogRepo.save(dialog);
 }
 
-
+@Transactional
 public List<ChatMessage> allMessages(String dialog){
-    return dialogRepo.findByName(dialog)
+    var list =  dialogRepo.findByName(dialog)
             .orElseThrow()
             .getMessages()
             .stream()
             .map(MessageEnt::toChatMessage)
             .toList();
+
+    return list;
 }
+@Transactional
+    public List<PictureMessage> allPictures(String dialog){
+        var list =  dialogRepo.findByName(dialog)
+                .orElseThrow()
+                .getPictures()
+                .stream()
+                .map(PictureMessage::from)
+                .toList();
+
+        return list;
+    }
 
 }

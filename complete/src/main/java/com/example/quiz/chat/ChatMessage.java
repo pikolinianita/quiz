@@ -1,6 +1,6 @@
 package com.example.quiz.chat;
 
-public class ChatMessage {
+public class ChatMessage implements MessageInterface {
 
     String user;
     String message;
@@ -23,19 +23,23 @@ public class ChatMessage {
         return this;
     }
 
+    @Override
     public MessageType getType() {
         return type;
     }
 
+    @Override
     public ChatMessage setType(MessageType type) {
         this.type = type;
         return this;
     }
 
+    @Override
     public String getUser() {
         return user;
     }
 
+    @Override
     public ChatMessage setUser(String user) {
         this.user = user;
         return this;

@@ -30,7 +30,7 @@
                     <label for="name">What is your name?</label>
                     <input type="text" id="name" class="form-control" placeholder="Your name here...">
                 </div>
-                <button id="send" class="btn btn-default" type="submit">Send</button>
+                <button id="assignName" class="btn btn-default" type="submit">Assign Nick</button>
             </form>
         </div>
     </div>
@@ -57,12 +57,21 @@
                     <div class="author text-primary">Author</div>
                     This is the first message in chat 1.
                 </div>
-
             </div>
         </div>
         <div class="col-md-8">
             <h2>Chat 2</h2>
             <div id="chat2-messages" class="border p-3" style="height: 400px; overflow-y: scroll;"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="input-container" style="position: fixed; bottom: 0; left: 0; width: 33%; background: #fff; padding: 10px; border-top: 1px solid #ccc;">
+                <form id="message-form" class="d-flex">
+                    <input type="text" class="form-control me-2" id="message-input" placeholder="Type your message here">
+                    <button type="submit" id="messageBtn" class="btn btn-primary">Send</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
