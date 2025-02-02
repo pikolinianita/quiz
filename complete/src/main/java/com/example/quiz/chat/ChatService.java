@@ -2,7 +2,8 @@ package com.example.quiz.chat;
 
 import com.example.quiz.chat.jpa.DialogRepo;
 import com.example.quiz.chat.jpa.MessageEnt;
-import com.example.quiz.chat.jpa.PictureEnt;
+import com.example.quiz.chat.value.ChatMessage;
+import com.example.quiz.chat.value.PictureMessage;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

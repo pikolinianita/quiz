@@ -1,4 +1,4 @@
-package com.example.quiz.chat;
+package com.example.quiz.chat.value;
 
 public class IncomingMessage {
 
@@ -9,16 +9,18 @@ public class IncomingMessage {
         return user;
     }
 
-    public void setUser(String user) {
+    public IncomingMessage setUser(String user) {
         this.user = user;
+        return this;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
+    public IncomingMessage setMessage(String message) {
         this.message = message;
+        return this;
     }
 
     @Override

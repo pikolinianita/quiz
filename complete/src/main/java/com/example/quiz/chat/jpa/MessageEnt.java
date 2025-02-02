@@ -1,7 +1,7 @@
 package com.example.quiz.chat.jpa;
 
-import com.example.quiz.chat.ChatMessage;
-import com.example.quiz.chat.MessageType;
+import com.example.quiz.chat.value.ChatMessage;
+import com.example.quiz.chat.value.MessageType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;

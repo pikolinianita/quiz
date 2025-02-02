@@ -1,4 +1,4 @@
-package com.example.quiz.chat;
+package com.example.quiz.chat.value;
 
 public interface MessageInterface {
     MessageType getType();

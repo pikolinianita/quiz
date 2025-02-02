@@ -1,4 +1,4 @@
-package com.example.quiz.chat;
+package com.example.quiz.chat.value;
 
 import com.example.quiz.chat.jpa.PictureEnt;
 

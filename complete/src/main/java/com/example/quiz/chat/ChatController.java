@@ -1,7 +1,8 @@
 package com.example.quiz.chat;
 
+import com.example.quiz.chat.value.ChatMessage;
+import com.example.quiz.chat.value.IncomingMessage;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -23,10 +24,9 @@ public class ChatController {
         this.messagingTemplate = messagingTemplate;
     }
 
-    //ToDo - chat stuff
     @MessageMapping("/msg")
     @SendTo("/topic/chat")
-    public ChatMessage greeting(IncomingMessage incomingMessage) throws Exception {
+    public ChatMessage processChatMessage(IncomingMessage incomingMessage) {
         System.out.println("Chat Controller received message: " + incomingMessage);
         var chatMessage =  ChatMessage.from(incomingMessage);
         chatService.addMessage(chatMessage);
@@ -34,7 +34,6 @@ public class ChatController {
     }
 
     @MessageMapping("/history")
-    //@SendTo("/topic/chat")
     public void history(String noIdeaWhy) {
         System.out.println("Chat Controller received history request " + noIdeaWhy);
         chatService.allMessages("default")
