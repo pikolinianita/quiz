@@ -27,6 +27,8 @@ public class Dialog {
             orphanRemoval = true)
     List<PictureEnt> pictures = new ArrayList<>();
 
+    boolean isPrivate;
+
     public UUID getId() {
         return id;
     }
@@ -72,6 +74,15 @@ public class Dialog {
 
     public Dialog setPictures(List<PictureEnt> pictures) {
         this.pictures = pictures;
+        return this;
+    }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public Dialog setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
         return this;
     }
 
