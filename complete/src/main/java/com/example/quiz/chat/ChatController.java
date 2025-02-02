@@ -42,6 +42,7 @@ public class ChatController {
                 .forEach(msg -> messagingTemplate.convertAndSend("/topic/chat", msg));
     }
 
+    //for testing
     @GetMapping("/api/v1/allMessages")
     public ResponseEntity<List<ChatMessage>> allMessages() {
         return new ResponseEntity<>(chatService.allMessages("default"), HttpStatus.OK);
